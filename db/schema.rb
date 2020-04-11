@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_100051) do
+ActiveRecord::Schema.define(version: 2020_04_11_130756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2020_04_11_100051) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "category_posts", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_category_posts_on_category_id"
+    t.index ["post_id"], name: "index_category_posts_on_post_id"
+  end
+
   create_table "cetegory_users", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "user_id", null: false
@@ -28,6 +37,14 @@ ActiveRecord::Schema.define(version: 2020_04_11_100051) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_cetegory_users_on_category_id"
     t.index ["user_id"], name: "index_cetegory_users_on_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,6 +69,8 @@ ActiveRecord::Schema.define(version: 2020_04_11_100051) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "category_posts", "categories"
+  add_foreign_key "category_posts", "posts"
   add_foreign_key "cetegory_users", "categories"
   add_foreign_key "cetegory_users", "users"
 end

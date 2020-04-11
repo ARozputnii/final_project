@@ -7,7 +7,7 @@ class CategoryUsersController < ApplicationController
     if @user.update(user_params)
       redirect_to cabinet_path(@user), notice: 'Categories has been added'
     else
-      render :edit
+      render :edit, alert: 'Something be wrong'
     end
   end
 

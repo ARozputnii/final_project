@@ -1,0 +1,13 @@
+<h1>Posts</h1>
+<% @posts.each do |post| %>
+  <h4>
+    <%= link_to post.title, post_path(post) %>
+  </h4>
+  <p>
+    <%= h truncate(post.body, length: 50 )%>
+  </p>
+  <p>
+    <%= image_tag post.image.url, width: 70 if post.image? %>
+  </p>
+  <hr>
+<% end %>

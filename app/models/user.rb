@@ -16,7 +16,7 @@
 #  image                  :text
 #
 class User < ApplicationRecord
-  has_many :cetegory_users
+  has_many :cetegory_users, dependent: :destroy
   has_many :categories, through: :cetegory_users
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
