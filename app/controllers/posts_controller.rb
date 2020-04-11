@@ -1,0 +1,24 @@
+class PostsController < ApplicationController
+  def index
+    @posts = Post.all.includes(:user, :category)
+  end
+
+  def show
+    @post = Post.find params[:id]
+  end
+
+  def render_form
+    render 'posts/form'
+  end
+
+  def parse_link
+    row_link = params[:body][:link]
+    user = current_user
+    result = PostFabric::Parse.new(row_link, user).generate_post
+    if result == 'Success'
+      redirect_to root_path, notice: 'Success'
+    else
+      render 'posts/form', alert: 'Error'
+    end
+  end
+end

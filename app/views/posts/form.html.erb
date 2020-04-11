@@ -1,0 +1,10 @@
+<%= form_for :body, url: send_link_path do |form| %>
+  <div class="row pt-5">
+    <div class="col-5">
+      <%= form.text_field :link, class: "form-control"%>
+    </div>
+    <div class="col">
+      <%= form.submit 'Submit', class: "btn btn-outline-dark btn-sm" %>
+    </div>
+  </div>
+<% end %>
