@@ -1,0 +1,6 @@
+<%= link_to 'add category', edit_category_user_path(id: current_user.id) %>
+<div>
+  <% @user.categories.each do |category| %>
+    <p><%= category.name %></p>
+  <% end %>
+</div>

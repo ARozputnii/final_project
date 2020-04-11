@@ -16,10 +16,10 @@
 #  image                  :text
 #
 class User < ApplicationRecord
-  has_many :categories_users
-  has_many :categories, through: :categories_users
+  has_many :cetegory_users
+  has_many :categories, through: :cetegory_users
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable,
          :validatable, :omniauthable, omniauth_providers: [:facebook]
 
   def self.new_with_session(params, session)

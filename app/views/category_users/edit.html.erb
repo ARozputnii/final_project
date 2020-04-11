@@ -1,0 +1,9 @@
+<div class="col-10 offset-md-4 offset-2 pt-5">
+  <%= form_for @user, url: category_user_path(id: current_user.id) do |f| %>
+    <div class="field">
+      <%= f.label :categories %>
+      <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    </div>
+    <div class=""><%= f.submit 'Save ', class:'btn btn-outline-dark'%></div>
+  <% end %>
+</div>
