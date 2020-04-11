@@ -56,8 +56,8 @@ module PostFabric
     end
 
     def save_post(category_title, post_title, post_body, post_first_picture, user)
-      category = Category.create(title: category_title)
-      post = Post.new(title: post_title, body: post_body, remote_picture_url: post_first_picture, user_id: user.id, category_id: category.id)
+      category = Category.create(name: category_title)
+      post = Post.new(title: post_title, body: post_body, image: post_first_picture)
       if post.save
         'Success'
       else

@@ -4,7 +4,22 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find params[:id]
+    @post = Post.includes(:user, :category).find params[:id]
+  end
+
+  def user_posts
+    @posts = Post.includes(:user).where(users: { id: current_user.id }).includes(:category)
+    render :index
+  end
+
+  def posts_with_included_categories
+    categories = current_user.categories.includes(posts: :user)
+    @posts = []
+    categories.each do |category|
+      @posts +=category.posts
+    end
+
+    render "posts/index"
   end
 
   def render_form
@@ -14,7 +29,9 @@ class PostsController < ApplicationController
   def parse_link
     row_link = params[:body][:link]
     user = current_user
+
     result = PostFabric::Parse.new(row_link, user).generate_post
+
     if result == 'Success'
       redirect_to root_path, notice: 'Success'
     else

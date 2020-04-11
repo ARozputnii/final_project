@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_11_130756) do
+ActiveRecord::Schema.define(version: 2020_04_11_203256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2020_04_11_130756) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_cetegory_users_on_category_id"
     t.index ["user_id"], name: "index_cetegory_users_on_user_id"
+  end
+
+  create_table "post_users", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_post_users_on_post_id"
+    t.index ["user_id"], name: "index_post_users_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -73,4 +82,6 @@ ActiveRecord::Schema.define(version: 2020_04_11_130756) do
   add_foreign_key "category_posts", "posts"
   add_foreign_key "cetegory_users", "categories"
   add_foreign_key "cetegory_users", "users"
+  add_foreign_key "post_users", "posts"
+  add_foreign_key "post_users", "users"
 end

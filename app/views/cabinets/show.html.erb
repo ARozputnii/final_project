@@ -1,4 +1,6 @@
-<%= link_to 'chose category', edit_category_user_path(id: current_user.id), class: "btn btn-outline-dark" %>
+<%= link_to 'chose category', edit_category_user_path(id: current_user.id), class: "btn btn-outline-dark btn-sm" %>
+<%= link_to 'add post', render_posts_path , class: "btn btn-outline-dark btn-sm"%>
+
 <div>
   <div class="row pt-4">
     <h5 class="">Your added categories: </h5>
@@ -10,5 +12,10 @@
   </div>
 </div>
 <div>
-  <%= link_to 'add post', render_posts_path , class: "btn btn-outline-dark btn-sm"%>
+  <% @posts.each do |post| %>
+    <%= post.title %>
+    <%= post.body %>
+    <hr>
+    <hr>
+  <% end %>
 </div>

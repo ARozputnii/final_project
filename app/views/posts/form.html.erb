@@ -3,6 +3,14 @@
     <div class="col-5">
       <%= form.text_field :link, class: "form-control"%>
     </div>
+    <%#= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |t| %>
+<!--      <div class="card col-3">-->
+<!--        <div class="card-body text-center">-->
+          <%#= t.label %>
+          <%#= t.label { t.check_box } %>
+<!--        </div>-->
+<!--      </div>-->
+    <%# end %>
     <div class="col">
       <%= form.submit 'Submit', class: "btn btn-outline-dark btn-sm" %>
     </div>
